@@ -1,0 +1,92 @@
+.Message {
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+  box-sizing: border-box;
+  height: 75px;
+  width: 90%;
+  display: flex;
+  padding: 5px;
+}
+
+.Message-image {
+  display: flex;
+  height: 55px;
+  width: 55px;
+}
+
+.Message-image img {
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.Message-data {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  padding: 0px 15px;
+}
+
+.Message-posted-timestamp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50%;
+  width: 40%;
+}
+
+.Message-PostedBy {
+  color: black;
+  margin: 0px;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.Message-content {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  width: 75%;
+  overflow-wrap: normal;
+}
+
+.Message-content p {
+  margin: 0px;
+}
+
+.Message-timestamp {
+  color: lightgrey;
+  margin: 0px;
+}
+
+.MessageList {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 5px 5px 5px 0px;
+  justify-content: flex-end;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.MessageList-container {
+  display: flex;
+  box-sizing: border-box;
+  height: 80%;
+  width: 100%;
+  padding: 0px 10px;
+}
+
+.Choose-Channel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 50%;
+}

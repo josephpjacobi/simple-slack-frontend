@@ -1,0 +1,31 @@
+.NavItem-button {
+  color: lightgray;
+  margin: 2px 2px;
+  padding: 2px;
+}
+
+.NavItem-button:hover {
+  background-color: goldenrod;
+}
+
+.NavItem-button.selected {
+  color: white;
+  font-weight: 700;
+}
+
+.NavSection {
+  margin-bottom: 50px;
+  height: 100%;
+}
+
+.NavSection-items {
+  list-style: none;
+}
+
+.NavSection-title {
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 10px 10px 5px 25px;
+}
+

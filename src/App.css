@@ -1,10 +1,28 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.content {
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+nav {
+  width: 25%;
+  height: 100%;
+  background-color: rgb(37, 72, 142)
 }
 
 @media (prefers-reduced-motion: no-preference) {
