@@ -6,23 +6,13 @@ import InputBox from './input/input-box';
 
 function App() {
   useEffect(() => {
-    fetch('http://localhost:3001/api/channels')
-      .then((response) => {
-        return response.json();
-      })
-      .then(
-        (channelData) => {
-          setAllChannels(channelData)
-        });
-      
-    fetch('http://localhost:3001/api/people')
-      .then((response) => {
-        return response.json();
-      })
-      .then(
-        (peopleData) => {
-          setAllPeople(peopleData)
-        });
+      Promise.all([
+        fetch('http://localhost:3001/api/channels').then(channels => channels.json()),
+        fetch('http://localhost:3001/api/people').then(people => people.json())
+      ]).then(([channels, people]) => {
+        setAllChannels(channels);
+        setAllPeople(people);
+      });
   }, []);
 
   const [selectedChannel, setSelectedChannel] = useState('');
