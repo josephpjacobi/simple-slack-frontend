@@ -7,11 +7,11 @@ import InputBox from './input/input-box';
 function App() {
   useEffect(() => {
       Promise.all([
-        fetch('http://localhost:3001/api/channels').then(channels => channels.json()),
-        fetch('http://localhost:3001/api/people').then(people => people.json())
-      ]).then(([channels, people]) => {
+        fetch('http://localhost:3001/channels').then(channels => channels.json()),
+        fetch('http://localhost:3001/users').then(users => users.json())
+      ]).then(([channels, users]) => {
         setAllChannels(channels);
-        setAllPeople(people);
+        setAllPeople(users);
       });
   }, []);
 
