@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import NavColumn from "./nav-column/nav-column";
+import { NavColumn } from "./nav-column/nav-column";
 import MessageList from "./message-list/message-list";
 import InputBox from "./input/input-box";
 
@@ -24,36 +24,30 @@ function App() {
     const buildEndpoint = channel => {
       if (allPeople.find(user => user.username === channel)) {
         return `http://localhost:3001/messages/username/${channel}`;
-      } else {
-        return `http://localhost:3001/messages/channelname/${channel}`;
       }
+      return `http://localhost:3001/messages/channelname/${channel}`;
     };
 
     if (selectedChannel) {
       const endpoint = buildEndpoint(selectedChannel);
       fetch(endpoint)
-        .then(response => {
-          return response.json();
-        })
-        .then(messages => {
-          return setMessages(messages);
-        });
-    } else {
-      return setMessages([]);
+        .then(response => response.json())
+        .then(newMessages => setMessages(newMessages));
     }
+    return setMessages([]);
   }, [selectedChannel, allPeople]);
+
+  const addMessageToPerson = newMessage => {
+    const updatedPeople = { ...allPeople };
+    updatedPeople[newMessage.postedBy].messages.push(newMessage);
+    setAllPeople(updatedPeople);
+  };
 
   const addNewMessage = (newMessage, channel) => {
     const updatedChannels = { ...allChannels };
     updatedChannels[channel].messages.push(newMessage);
     setAllChannels(updatedChannels);
     addMessageToPerson(newMessage);
-  };
-
-  const addMessageToPerson = newMessage => {
-    const updatedPeople = { ...allPeople };
-    updatedPeople[newMessage.postedBy].messages.push(newMessage);
-    setAllPeople(updatedPeople);
   };
 
   return (
