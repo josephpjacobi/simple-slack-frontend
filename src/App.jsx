@@ -38,21 +38,14 @@ function App() {
   }, [selectedChannel, allPeople]);
 
   // It is creating a new message in the database but not using the data I provided in the body
-  const addMessage = () => {
+  const addMessage = newMessage => {
     fetch("http://localhost:3001/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       mode: "cors",
-      body: JSON.stringify({
-        postedbyid: 6,
-        channelid: 1,
-        postedby: "Joe",
-        channelname: "general",
-        timestamp: new Date().toISOString(),
-        content: "general content"
-      })
+      body: JSON.stringify(newMessage)
     })
       .then(response => response.json())
       .then(newMessages => setMessages(newMessages));
