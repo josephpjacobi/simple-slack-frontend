@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { NavColumn } from './nav-column/nav-column';
-import MessageList from './message-list/message-list';
-import InputBox from './input/input-box';
+import { NavColumn } from './components/nav-column/nav-column';
+import MessageList from './components/message-list/message-list';
+import InputBox from './components/input/input-box';
 
 function App() {
   const [selectedChannel, setSelectedChannel] = useState('');
@@ -50,23 +50,6 @@ function App() {
       .then((newMessages) => setMessages(newMessages));
   };
 
-  const deleteMessage = (message) => {
-    fetch('http://localhost:3001/messages', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      mode: 'cors',
-      body: JSON.stringify(message)
-    })
-      .then((response) => response.json())
-      .then((allMessages) => {
-        // eslint-disable-next-line no-console
-        console.log(`Message deleted with id ${message.messageid}`);
-        setMessages(allMessages);
-      });
-  };
-
   return (
     <div>
       {allChannels.length === 0 && allPeople.length === 0 ? (
@@ -82,7 +65,10 @@ function App() {
             />
           </nav>
           <main className="content">
-            <MessageList messages={messages} deleteMessage={deleteMessage} />
+            <MessageList
+              messages={messages}
+              setMessages={setMessages}
+            />
             <InputBox
               selectedChannel={selectedChannel}
               addNewMessage={addMessage}
