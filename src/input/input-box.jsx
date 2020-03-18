@@ -5,18 +5,35 @@ import PropTypes from "prop-types";
 const InputBox = ({ selectedChannel, addNewMessage }) => {
   const [content, setContent] = useState("");
 
+  // const getChannelID = (channel) => {
+  //   switch (channel) {
+  //     default:
+  //     case 'general':
+  //       return 1;
+  //     case 'help':
+  //       return 2;
+  //     case 'react':
+  //       return 3;
+  //     case 'redux':
+  //       return 4;
+  //     case 'webpack':
+  //       return 5;
+  //     case 'redux-router':
+  //       return 6;
+  //   }
+  // }
+
   const createNewMessage = e => {
     e.preventDefault();
     const newMessage = {
-      messageID: Math.random(),
-      postedByID: 1,
-      channelId: 1,
-      postedBy: "Joe",
-      channelName: selectedChannel,
+      postedbyiD: 6,
+      channelid: 1,
+      postedby: "Joe",
+      channelname: "general",
       timestamp: new Date().toISOString(),
-      content
+      content: "general content"
     };
-    addNewMessage(newMessage, selectedChannel);
+    addNewMessage();
     setContent("");
   };
 

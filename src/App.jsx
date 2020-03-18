@@ -37,17 +37,25 @@ function App() {
     return setMessages([]);
   }, [selectedChannel, allPeople]);
 
-  const addMessageToPerson = newMessage => {
-    const updatedPeople = { ...allPeople };
-    updatedPeople[newMessage.postedBy].messages.push(newMessage);
-    setAllPeople(updatedPeople);
-  };
-
-  const addNewMessage = (newMessage, channel) => {
-    const updatedChannels = { ...allChannels };
-    updatedChannels[channel].messages.push(newMessage);
-    setAllChannels(updatedChannels);
-    addMessageToPerson(newMessage);
+  // It is creating a new message in the database but not using the data I provided in the body
+  const addMessage = () => {
+    fetch("http://localhost:3001/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        postedbyid: 6,
+        channelid: 1,
+        postedby: "Joe",
+        channelname: "general",
+        timestamp: new Date().toISOString(),
+        content: "general content"
+      })
+    })
+      .then(response => response.json())
+      .then(newMessages => setMessages(newMessages));
   };
 
   return (
@@ -68,7 +76,7 @@ function App() {
             <MessageList messages={messages} />
             <InputBox
               selectedChannel={selectedChannel}
-              addNewMessage={addNewMessage}
+              addNewMessage={addMessage}
             />
           </main>
         </div>

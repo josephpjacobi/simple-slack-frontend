@@ -32,6 +32,7 @@ const Message = ({ message }) => (
       </div>
       <div className="Message-content">
         <p>{message.content}</p>
+        <button type="button">{message.messageid}</button>
       </div>
     </div>
   </div>
