@@ -1,43 +1,43 @@
-import React, { useState } from "react";
-import "./input-box.css";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import './input-box.css';
+import PropTypes from 'prop-types';
 
 const InputBox = ({ selectedChannel, addNewMessage }) => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
 
-  const getChannelID = channel => {
+  const getChannelID = (channel) => {
     switch (channel) {
       default:
-      case "general":
+      case 'general':
         return 1;
-      case "help":
+      case 'help':
         return 2;
-      case "react":
+      case 'react':
         return 3;
-      case "redux":
+      case 'redux':
         return 4;
-      case "webpack":
+      case 'webpack':
         return 5;
-      case "redux-router":
+      case 'redux-router':
         return 6;
     }
   };
 
-  const createNewMessage = e => {
+  const createNewMessage = (e) => {
     e.preventDefault();
     const newMessage = {
       postedbyiD: 6,
       channelid: getChannelID(selectedChannel),
-      postedby: "Joe",
+      postedby: 'Joe',
       channelname: selectedChannel,
       timestamp: new Date().toISOString(),
       content
     };
     addNewMessage(newMessage);
-    setContent("");
+    setContent('');
   };
 
-  const inputDisplay = channel => `InputBox-${channel ? "container" : "hide"}`;
+  const inputDisplay = (channel) => `InputBox-${channel ? 'container' : 'hide'}`;
 
   return (
     <div className={inputDisplay(selectedChannel)}>
@@ -46,7 +46,7 @@ const InputBox = ({ selectedChannel, addNewMessage }) => {
           className="InputBox-userinput"
           type="text"
           value={content}
-          onChange={e => setContent(e.target.value)}
+          onChange={(e) => setContent(e.target.value)}
           placeholder="Type your message here. Press Enter to Send"
         />
       </form>

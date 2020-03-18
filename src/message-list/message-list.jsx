@@ -1,13 +1,13 @@
-import React from "react";
-import "./message-list.css";
-import PropTypes from "prop-types";
+import React from 'react';
+import './message-list.css';
+import PropTypes from 'prop-types';
 
-const MessageList = ({ messages }) => (
+const MessageList = ({ messages, deleteMessage }) => (
   <div className="MessageList-container">
     <ul className="MessageList">
       {messages.length > 0 ? (
-        messages.map(message => (
-          <Message key={message.messageid} message={message} />
+        messages.map((message) => (
+          <Message key={message.messageid} message={message} deleteMessage={deleteMessage} />
         ))
       ) : (
         <div className="Choose-Channel">Choose a channel to get started!</div>
@@ -17,10 +17,11 @@ const MessageList = ({ messages }) => (
 );
 
 MessageList.propTypes = {
-  messages: PropTypes.instanceOf(Array).isRequired
+  messages: PropTypes.instanceOf(Array).isRequired,
+  deleteMessage: PropTypes.func.isRequired
 };
 
-const Message = ({ message }) => (
+const Message = ({ message, deleteMessage }) => (
   <div className="Message">
     <div className="Message-image">
       <img src="#" alt="slackPic" />
@@ -32,14 +33,15 @@ const Message = ({ message }) => (
       </div>
       <div className="Message-content">
         <p>{message.content}</p>
-        <button type="button">{message.messageid}</button>
+        <button type="button" onClick={() => deleteMessage(message)}>{message.messageid}</button>
       </div>
     </div>
   </div>
 );
 
 Message.propTypes = {
-  message: PropTypes.instanceOf(Object).isRequired
+  message: PropTypes.instanceOf(Object).isRequired,
+  deleteMessage: PropTypes.func.isRequired
 };
 
 export default MessageList;
